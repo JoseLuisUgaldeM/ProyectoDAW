@@ -16,6 +16,9 @@
 </head>
 
 <body>
+  <?php 
+      include "conexion.php";
+  ?>
      <header class="header">
 
     <div class="px-2 py-1 bg-opacity-30 bg-info bg-gradient text-white contenedor">
@@ -42,20 +45,32 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                    <form class="row g-3">
+                    <form class="row g-3" action="insertar.php" method="post" >
                       <div class="col-md-12">
-                        <label for="validationDefault01" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="validationDefault01" pattern="[a-zA-Z]+" required>
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" pattern="[a-zA-Z]+" required>
                       </div>
                       <div class="col-md-12">
-                        <label for="validationDefault02" class="form-label">Apellido</label>
-                        <input type="text" class="form-control" id="validationDefault02" pattern="[a-zA-Z]+" required>
+                        <label for="primerApellido" class="form-label">Primer pellido</label>
+                        <input type="text" class="form-control" id="primerApellido" name="primerApellido" pattern="[a-zA-Z]+" required>
                       </div>
                       <div class="col-md-12">
-                        <label for="validationDefaultUsername" class="form-label">Correo electrónico</label>
+                        <label for="segundoApellido" class="form-label">Segundo Apellido</label>
+                        <input type="text" class="form-control" id="segundoApellido" name="segundoApellido" pattern="[a-zA-Z]+" required>
+                      </div>
+                       <div class="col-md-12">
+                        <label for="usuarioNombre" class="form-label">Nombre de usuario</label>
+                        <input type="text" class="form-control" id="usuarioNombre" name="usuarioNombre" pattern="[a-zA-Z]+" required>
+                      </div>
+                        <div class="col-md-12">
+                        <label for="pass" class="form-label">Contraseña</label>
+                        <input type="password" class="form-control" id="pass" name="pass"  required>
+                      </div>
+                      <div class="col-md-12">
+                        <label for="email" class="form-label">Correo electrónico</label>
                         <div class="input-group">
                           <span class="input-group-text" id="inputGroupPrepend2">@</span>
-                          <input type="text" class="form-control" id="validationDefaultUsername"
+                          <input type="text" class="form-control" id="email" name="email"
                             pattern="[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-zA-Z]+" aria-describedby="inputGroupPrepend2"
                             required>
                         </div>
