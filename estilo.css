@@ -1,0 +1,27 @@
+html{
+
+    box-sizing: border-box;
+    padding: 20px;
+    margin:0;
+}
+
+
+.header{
+
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.contenedor{
+
+    width: 100%;
+    
+}
+
+ header .inicio  button {
+
+    width: 400px;
+    height: 100px;
+    background-color: rgb(126, 126, 253);
+}
