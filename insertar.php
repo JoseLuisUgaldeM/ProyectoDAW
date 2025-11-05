@@ -22,4 +22,5 @@ $query = mysqli_query($conexion, $insertar);
 // Cerrar la sentencia y la conexión
 
 $conexion->close();
+header("Location:index.php");
 ?>

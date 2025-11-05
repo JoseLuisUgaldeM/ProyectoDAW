@@ -16,6 +16,12 @@
 </head>
 
 <body>
+
+    <div class="loader">
+        <div class="spinner"></div>
+        <p>Cargando...</p>
+    </div>
+
   <?php 
       include "conexion.php";
   ?>
@@ -203,6 +209,20 @@
   </div>
   </div>
   <!-- Hasta aquí la barra de navegación-->
+
+  <script>
+    window.onload = function() {
+    const loader = document.querySelector('.loader');
+    loader.style.transition = 'opacity 0.5s ease'; // Transición para el desvanecimiento
+    loader.style.opacity = '0'; // Hace que el loader se desvanezca
+    
+    // Opcional: Eliminar el loader del DOM después de la transición
+    setTimeout(() => {
+        loader.remove();
+    }, 500);
+};
+
+  </script>
 
 </body>
 </html>
