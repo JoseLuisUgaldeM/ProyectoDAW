@@ -1,3 +1,22 @@
+<?php
+
+    // Crear una sentencia sql para comprobar que el usuario está registrado
+
+
+    require ("conexion.php");
+
+    $usuario= $_POST['usuario'];
+
+    $pass = $_POST['pass'];
+
+    $consulta = mysqli_query($conexion ," SELECT * FROM usuario WHERE usuarioNombre = '$usuario' AND pass = '$pass'");
+
+    if (($consulta) and ($user = mysqli_fetch_assoc($consulta))){
+
+    ?>
+        
+      <!DOCTYPE html>
+<html lang="es">
 <head>
   <link rel="stylesheet" href="estilo.css">
   <script src="javascript.js"></script>
@@ -34,8 +53,9 @@
 
 
        <div class="botones">
-            <button type="button" class="btn btn-light text-dark me-2" data-bs-toggle="modal"
-              data-bs-target="#exampleModal2">Inicio sesión</button>
+         <p>Bienvenido
+            <?php print ($_POST['usuario']) ?>
+         </p>
             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
               data-bs-target="#exampleModal">Registrarme</button>
         </div>
@@ -226,3 +246,16 @@
 
 </body>
 </html>
+
+
+     <?php   
+        
+  
+    }else{
+
+
+        header("Location:index.php");
+    }
+    
+    
+        ?>

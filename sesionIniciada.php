@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="es">
 <head>
   <link rel="stylesheet" href="estilo.css">
   <script src="javascript.js"></script>
@@ -34,8 +36,9 @@
 
 
        <div class="botones">
-            <button type="button" class="btn btn-light text-dark me-2" data-bs-toggle="modal"
-              data-bs-target="#exampleModal2">Inicio sesión</button>
+         <p>Bienvenido
+            <?php print ($_POST['usuario']) ?>
+         </p>
             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
               data-bs-target="#exampleModal">Registrarme</button>
         </div>
@@ -226,3 +229,4 @@
 
 </body>
 </html>
+
