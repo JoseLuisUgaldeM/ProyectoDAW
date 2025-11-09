@@ -92,6 +92,7 @@
                         <label for="validationDefault05" class="form-label">Código postal</label>
                         <input type="text" class="form-control" id="validationDefault05" required>
                       </div>
+                     
                       <div class="col-12">
                         <div class="form-check">
                           <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
@@ -105,10 +106,7 @@
                       </div>
                     </form>
                   </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary">Guardar cambios</button>
-                  </div>
+                 
                 </div>
               </div>
             </div>
