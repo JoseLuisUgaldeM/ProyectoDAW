@@ -19,6 +19,10 @@ $insertar = "INSERT INTO usuario (nombre, primerApellido, segundoApellido, usuar
 
 $query = mysqli_query($conexion, $insertar);
 
+
+
+
+
 // Cerrar la sentencia y la conexión
 
 $conexion->close();

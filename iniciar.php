@@ -9,9 +9,33 @@ $usuario = $_POST['usuario'];
 
 $pass = $_POST['pass'];
 
+
+
 $consulta = mysqli_query($conexion, " SELECT * FROM usuario WHERE usuarioNombre = '$usuario' AND pass = '$pass'");
 
 if (($consulta) and ($user = mysqli_fetch_assoc($consulta))) {
+
+ 
+  session_start();
+  
+  $_SESSION['usuarioNombre']= $user['usuarioNombre'];
+
+  $_SESSION['id_usuario']= $user['id_usuario'];
+
+  $id_usuario=  $_SESSION['id_usuario'];
+     
+
+ $consulta2=   mysqli_query($conexion, " SELECT * FROM fotoperfil WHERE id_usuario = '$id_usuario'");      
+     
+if (($consulta2) and ($fotografia = mysqli_fetch_assoc($consulta2))) {
+
+  $rutaFoto= $fotografia['ruta'];
+}
+
+  else{
+
+    $rutaFoto='uploads/default.jpg';
+  }
 
 ?>
 
@@ -58,7 +82,7 @@ if (($consulta) and ($user = mysqli_fetch_assoc($consulta))) {
             
             
             <div class="dropdown"> <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-              <img src="uploads/default.jpg" alt="" width="40" height="40" class="rounded-circle me-2">
+              <img src="<?php echo $rutaFoto; ?>" alt="Foto de perfil " width="60" height="60" class="rounded-circle me-2">
               <strong> <?php print($_POST['usuario']) ?></strong> </a>
               <ul class="dropdown-menu text-small shadow" style="">
                 <li><a class="dropdown-item" href="cambiar.html">Cambiar foto de perfil</a></li>
@@ -163,7 +187,7 @@ if (($consulta) and ($user = mysqli_fetch_assoc($consulta))) {
                           <label for="validationDefault11" class="form-label">Contraseña</label>
                           <input type="password" name="pass" class="form-control" id="validationDefault11" required>
                         </div>
-
+          
                         <div class="col-12">
                           <button class="btn btn-primary" type="submit">Entrar</button>
                         </div>

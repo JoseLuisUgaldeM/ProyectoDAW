@@ -1,4 +1,6 @@
 <?php
+require("conexion.php");
+session_start();
 $target_dir = "uploads/"; // Directorio donde se guardarán las imágenes
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
@@ -17,10 +19,7 @@ if(isset($_POST["submit"])) {
 }
 
 // Verifica si el archivo ya existe
-if (file_exists($target_file)) {
-    echo "Lo sentimos, el archivo ya existe.";
-    $uploadOk = 0;
-}
+
 
 // Limita el tamaño del archivo (ejemplo: 5MB)
 if ($_FILES["fileToUpload"]["size"] > 5000000) {
@@ -43,9 +42,24 @@ if ($uploadOk == 0) {
     // move_uploaded_file mueve el archivo temporal a la ubicación final
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
         require("conexion.php");
+        $usuarioNombre =$_SESSION['usuarioNombre'];
+        $id_usuario =$_SESSION['id_usuario'];
+
+        
+         $sql = "INSERT INTO fotoPerfil ( nombre, ruta, id_usuario) VALUES ( '$usuarioNombre', '$target_file', $id_usuario)";
+
+    if ($conexion->query($sql) === TRUE) {
+        echo "Ruta guardada en la BD correctamente";
+    } else {
+        echo "Error al guardar ruta: " . $sql . "<br>" . $conn->error;
+    }
+
+
         echo "El archivo ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " ha sido subido.";
     } else {
         echo "Lo sentimos, hubo un error al subir tu archivo.";
     }
 }
+
+header ("Location:iniciar.php");
 ?>
