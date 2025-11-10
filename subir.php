@@ -45,7 +45,9 @@ if ($uploadOk == 0) {
         $usuarioNombre =$_SESSION['usuarioNombre'];
         $id_usuario =$_SESSION['id_usuario'];
 
-        
+        $sqlBorrar = "DELETE FROM fotoPerfil WHERE id_usuario = $id_usuario";
+
+        $conexion->query($sqlBorrar);
          $sql = "INSERT INTO fotoPerfil ( nombre, ruta, id_usuario) VALUES ( '$usuarioNombre', '$target_file', $id_usuario)";
 
     if ($conexion->query($sql) === TRUE) {
@@ -61,5 +63,5 @@ if ($uploadOk == 0) {
     }
 }
 
-header ("Location:iniciar.php");
+header("Location:iniciar.php");
 ?>

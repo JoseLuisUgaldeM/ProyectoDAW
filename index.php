@@ -23,6 +23,8 @@
     </div>
 
   <?php 
+  session_start();
+      $_SESSION = array();
       include "conexion.php";
   ?>
      <header class="header">
@@ -133,7 +135,7 @@
                       </div>
 
                       <div class="col-12">
-                        <button class="btn btn-primary" type="submit">Entrar</button>
+                        <button class="btn btn-primary" type="submit" name="iniciarSesion">Entrar</button>
                       </div>
                     </form>
                   </div>

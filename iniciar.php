@@ -1,13 +1,27 @@
 <?php
 
+session_start();
+
 // Crear una sentencia sql para comprobar que el usuario está registrado
 
 
 require("conexion.php");
 
+if(isset($_POST['iniciarSesion'])){
+
 $usuario = $_POST['usuario'];
 
 $pass = $_POST['pass'];
+
+}
+
+if (isset($_SESSION['usuarioNombre']) && ( $_SESSION['pass'])){
+
+   $pass= $_SESSION['pass'];
+
+   $usuario =$_SESSION['usuario'];
+}
+
 
 
 
@@ -16,11 +30,13 @@ $consulta = mysqli_query($conexion, " SELECT * FROM usuario WHERE usuarioNombre 
 if (($consulta) and ($user = mysqli_fetch_assoc($consulta))) {
 
  
-  session_start();
+
   
   $_SESSION['usuarioNombre']= $user['usuarioNombre'];
 
   $_SESSION['id_usuario']= $user['id_usuario'];
+
+   $_SESSION['pass']= $user['pass'];
 
   $id_usuario=  $_SESSION['id_usuario'];
      
@@ -83,7 +99,7 @@ if (($consulta2) and ($fotografia = mysqli_fetch_assoc($consulta2))) {
             
             <div class="dropdown"> <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
               <img src="<?php echo $rutaFoto; ?>" alt="Foto de perfil " width="60" height="60" class="rounded-circle me-2">
-              <strong> <?php print($_POST['usuario']) ?></strong> </a>
+              <strong> <?php print($_SESSION['usuarioNombre']) ?></strong> </a>
               <ul class="dropdown-menu text-small shadow" style="">
                 <li><a class="dropdown-item" href="cambiar.html">Cambiar foto de perfil</a></li>
                 <li><a  class="btn dropdown-item" data-bs-toggle="modal"

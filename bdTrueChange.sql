@@ -51,13 +51,13 @@ CREATE TABLE IF NOT EXISTS `direccion` (
 -- Volcando estructura para tabla bdtruechange.fotoperfil
 CREATE TABLE IF NOT EXISTS `fotoperfil` (
   `id_fotoPerfil` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(50) DEFAULT NULL,
-  `ruta` varchar(50) DEFAULT NULL,
+  `nombre` varchar(100) DEFAULT NULL,
+  `ruta` varchar(100) DEFAULT NULL,
   `id_usuario` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_fotoPerfil`),
   KEY `FK_fotoperfil_usuario` (`id_usuario`),
   CONSTRAINT `FK_fotoperfil_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- La exportación de datos fue deseleccionada.
 
@@ -82,7 +82,6 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `usuarioNombre` varchar(50) DEFAULT NULL,
   `pass` varchar(50) DEFAULT NULL,
   `correo` varchar(100) DEFAULT NULL,
-  `fotoPerfil` varchar(50) DEFAULT '/uploads/default.jpg',
   `id_direccion` int(11) DEFAULT NULL,
   `id_producto` int(11) DEFAULT NULL,
   `id_valoracion` int(11) DEFAULT NULL,
@@ -96,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   CONSTRAINT `FK_usuario_producto` FOREIGN KEY (`id_producto`) REFERENCES `producto` (`id_producto`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_usuario_valoracion` FOREIGN KEY (`id_valoracion`) REFERENCES `valoracion` (`valoracion`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `id_direccion` FOREIGN KEY (`id_direccion`) REFERENCES `direccion` (`id_direccion`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- La exportación de datos fue deseleccionada.
 
