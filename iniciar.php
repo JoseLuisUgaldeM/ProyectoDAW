@@ -7,19 +7,18 @@ session_start();
 
 require("conexion.php");
 
-if(isset($_POST['iniciarSesion'])){
+if (isset($_POST['iniciarSesion'])) {
 
-$usuario = $_POST['usuario'];
+  $usuario = $_POST['usuario'];
 
-$pass = $_POST['pass'];
-
+  $pass = $_POST['pass'];
 }
 
-if (isset($_SESSION['usuarioNombre']) && ( $_SESSION['pass'])){
+if (isset($_SESSION['usuarioNombre']) && ($_SESSION['pass'])) {
 
-   $pass= $_SESSION['pass'];
+  $pass = $_SESSION['pass'];
 
-   $usuario =$_SESSION['usuario'];
+  $usuario = $_SESSION['usuario'];
 }
 
 
@@ -29,28 +28,26 @@ $consulta = mysqli_query($conexion, " SELECT * FROM usuario WHERE usuarioNombre 
 
 if (($consulta) and ($user = mysqli_fetch_assoc($consulta))) {
 
- 
 
-  
-  $_SESSION['usuarioNombre']= $user['usuarioNombre'];
 
-  $_SESSION['id_usuario']= $user['id_usuario'];
 
-   $_SESSION['pass']= $user['pass'];
+  $_SESSION['usuarioNombre'] = $user['usuarioNombre'];
 
-  $id_usuario=  $_SESSION['id_usuario'];
-     
+  $_SESSION['id_usuario'] = $user['id_usuario'];
 
- $consulta2=   mysqli_query($conexion, " SELECT * FROM fotoperfil WHERE id_usuario = '$id_usuario'");      
-     
-if (($consulta2) and ($fotografia = mysqli_fetch_assoc($consulta2))) {
+  $_SESSION['pass'] = $user['pass'];
 
-  $rutaFoto= $fotografia['ruta'];
-}
+  $id_usuario =  $_SESSION['id_usuario'];
 
-  else{
 
-    $rutaFoto='uploads/default.jpg';
+  $consulta2 =   mysqli_query($conexion, " SELECT * FROM fotoperfil WHERE id_usuario = '$id_usuario'");
+
+  if (($consulta2) and ($fotografia = mysqli_fetch_assoc($consulta2))) {
+
+    $rutaFoto = $fotografia['ruta'];
+  } else {
+
+    $rutaFoto = 'uploads/default.jpg';
   }
 
 ?>
@@ -62,13 +59,13 @@ if (($consulta2) and ($fotografia = mysqli_fetch_assoc($consulta2))) {
     <link rel="stylesheet" href="estilo.css">
     <script src="javascript.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+      integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="estilo.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
       crossorigin="anonymous"></script>
@@ -76,34 +73,34 @@ if (($consulta2) and ($fotografia = mysqli_fetch_assoc($consulta2))) {
   </head>
 
   <body>
-    
+
     <div class="loader">
       <div class="spinner"></div>
       <p>Cargando...</p>
     </div>
-    
+
     <?php
     include "conexion.php";
     ?>
     <header class="header">
-      
+
       <div class="px-2 py-1 bg-opacity-30 bg-info bg-gradient text-white contenedor">
         <div class="container">
           <div class="d-flex flex-wrap align-items-center justify-content-between">
             <img src="imagenes/icono_proyecto.png" alt="icono de la aplicacion" width="100" height="100">
             <!-- Ejemplo en PHP -->
-           
 
-            
-            
-            
+
+
+
+
             <div class="dropdown"> <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-              <img src="<?php echo $rutaFoto; ?>" alt="Foto de perfil " width="60" height="60" class="rounded-circle me-2">
-              <strong> <?php print($_SESSION['usuarioNombre']) ?></strong> </a>
+                <img src="<?php echo $rutaFoto; ?>" alt="Foto de perfil " width="60" height="60" class="rounded-circle me-2">
+                <strong> <?php print($_SESSION['usuarioNombre']) ?></strong> </a>
               <ul class="dropdown-menu text-small shadow" style="">
                 <li><a class="dropdown-item" href="cambiar.html">Cambiar foto de perfil</a></li>
-                <li><a  class="btn dropdown-item" data-bs-toggle="modal"
-              data-bs-target="#exampleModal12">Subir producto</a></li>
+                <li><a class="btn dropdown-item" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal12">Subir producto</a></li>
                 <li><a class="dropdown-item" href="#">Mi perfil</a></li>
                 <li><a class="dropdown-item" href="#">Configuración</a></li>
                 <li>
@@ -112,46 +109,46 @@ if (($consulta2) and ($fotografia = mysqli_fetch_assoc($consulta2))) {
                 <li><a class="dropdown-item" href="index.php">Cerrar sesión</a></li>
               </ul>
             </div>
-            
+
             <!-- Modal subir producto-->
-            
+
             <div class="modal" id="exampleModal12" tabindex="-1" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Rellena los datos de tu anuncio</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form class="row g-3" action="insertar.php" method="post">
+              aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Rellena los datos de tu anuncio</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <form class="row g-3" action="subirProducto.php" method="post">
                       <div class="col-md-12">
-                        <label for="titulo" class="form-label">Titulo</label>
+                        <label for="titulo" class="form-label" name="titulo">Titulo</label>
                         <input type="text" class="form-control" id="titulo" name="titulo" required>
                       </div>
                       <div class="col-md-12">
-                        
-                        
-                        <select class="form-select ">
+
+
+                        <select class="form-select " name="categoria">
                           <option selected disabled>Categoria</option>
-                          <option value="1">Coches</option>
-                          <option value="2">Motos</option>
-                          <option value="3">Motor y accesorios</option>
-                          <option>Moda y accesorios</option>
-                          <option value="1">Inmobiliaria</option>
-                          <option value="2">Tecnología y electrónica</option>
-                          <option value="3">Deporte y ocio</option>
-                          <option>Bicicletas</option>
-                          <option value="1">Hogar y jardin</option>
-                          <option value="2">Electrodomésticos</option>
-                          <option>Cine libros y música</option>
-                          <option value="1">Niños y bebés</option>
-                          <option value="2">Coleccionismo</option>
-                          <option>Construccion y reformas</option>
-                          <option value="1">Industria y agricultura</option>
-                          <option value="2">Empleo</option>
-                          <option>Servicios</option>
-                          <option value="1">Otros...</option>
+                          <option value="coches">Coches</option>
+                          <option value="motos">Motos</option>
+                          <option value="motor y accesorios">Motor y accesorios</option>
+                          <option value="moda y accesorios">Moda y accesorios</option>
+                          <option value="inmobiliaria">Inmobiliaria</option>
+                          <option value="tecnologia y electronica">Tecnología y electrónica</option>
+                          <option value="deporte y ocio">Deporte y ocio</option>
+                          <option value="bicicletas">Bicicletas</option>
+                          <option value="hogar y jardin">Hogar y jardin</option>
+                          <option value="electrodomesticos">Electrodomésticos</option>
+                          <option value="cine libros y musica">Cine libros y música</option>
+                          <option value="niños y bebes">Niños y bebés</option>
+                          <option value="coleccionismo">Coleccionismo</option>
+                          <option value="construccion y reformas">Construccion y reformas</option>
+                          <option value="industria  agricultura">Industria y agricultura</option>
+                          <option value="empleo">Empleo</option>
+                          <option value="servicios">Servicios</option>
+                          <option value="otros">Otros...</option>
 
                         </select>
 
@@ -160,32 +157,30 @@ if (($consulta2) and ($fotografia = mysqli_fetch_assoc($consulta2))) {
                       </div>
                       <div class="col-md-12">
 
-                        <textarea name="descripcion" id="descripcion" class="form-control">Descripcion</textarea>
+                        <textarea  id="descripcion" class="form-control" name="descripcion" placeholder="Descripción"></textarea>
                       </div>
                       <div class="col-md-12">
                         <label for="cambio" class="form-label">Quiero cambiar por...</label>
                         <input type="text" class="form-control" id="cambio" name="cambio" required>
                       </div>
-                      <div class="col-md-12">
-                        <label for="imagenes" class="form-label">Fotos</label>
-                        <input type="file" class="form-control" id="imagenes" name="imagenes" required>
-                      </div>
-                      <div class="col-md-12">
+                     
+                     
 
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Borrar</button>
+                          <button type="submit" class="btn btn-primary" name="publicar">Publicar</button>
+                        </div>
+                      </form>
 
-                    </form>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Borrar</button>
-                      <button type="button" class="btn btn-primary">Publicar</button>
-                    </div>
+                  
                   </div>
                 </div>
               </div>
-            
-            
-            <!-- Modal inicio de sesión-->
-            
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+
+
+              <!-- Modal inicio de sesión-->
+
+              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
@@ -203,7 +198,7 @@ if (($consulta2) and ($fotografia = mysqli_fetch_assoc($consulta2))) {
                           <label for="validationDefault11" class="form-label">Contraseña</label>
                           <input type="password" name="pass" class="form-control" id="validationDefault11" required>
                         </div>
-          
+
                         <div class="col-12">
                           <button class="btn btn-primary" type="submit">Entrar</button>
                         </div>
@@ -280,42 +275,44 @@ if (($consulta2) and ($fotografia = mysqli_fetch_assoc($consulta2))) {
     </div>
     <!-- Hasta aquí la barra de navegación-->
 
-    <div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary" style="width: 280px;">
+    <div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary col-lg-4 col-sm-12">
       <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"> <svg class="bi pe-none me-2" width="40" height="32" aria-hidden="true">
           <use xlink:href="#bootstrap"></use>
         </svg>
-        <span class="fs-4">Sidebar</span> </a>
-      <hr>
-      <ul class="nav nav-pills flex-column mb-auto">
-        <li class="nav-item"> <a href="#" class="nav-link active" aria-current="page">
-            <svg class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
-              <use xlink:href="#home"></use>
-            </svg>
-            Inicio
-          </a> </li>
-        <li> <a href="#" class="nav-link link-body-emphasis"> <svg class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
-              <use xlink:href="#speedometer2"></use>
-            </svg>
-            Mis productos
-          </a> </li>
-        <li> <a href="#" class="nav-link link-body-emphasis"> <svg class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
-              <use xlink:href="#table"></use>
-            </svg>
-            Favoritos
-          </a> </li>
-        <li> <a href="#" class="nav-link link-body-emphasis"> <svg class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
-              <use xlink:href="#grid"></use>
-            </svg>
-            Products
-          </a> </li>
-        <li> <a href="#" class="nav-link link-body-emphasis"> <svg class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
-              <use xlink:href="#people-circle"></use>
-            </svg>
-            Vendedores
-          </a> </li>
-      </ul>
-      <hr>
+        <span class="fs-4">Mi sitio</span>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+          <li class="nav-item"> <a href="#" class="nav-link active" aria-current="page">
+              <svg class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
+                <use xlink:href="#home"></use>
+              </svg>
+              Inicio
+            </a> </li>
+          <li> <a href="#" class="nav-link link-body-emphasis"> <svg class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
+                <use xlink:href="#speedometer2"></use>
+              </svg>
+              Mis productos
+            </a> </li>
+          <li> <a href="#" class="nav-link link-body-emphasis"> <svg class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
+                <use xlink:href="#table"></use>
+              </svg>
+              Favoritos
+            </a> </li>
+          <li> <a href="#" class="nav-link link-body-emphasis"> <svg class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
+                <use xlink:href="#grid"></use>
+              </svg>
+              Products
+            </a> </li>
+          <li> <a href="#" class="nav-link link-body-emphasis"> <svg class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
+                <use xlink:href="#people-circle"></use>
+              </svg>
+              Vendedores
+            </a> </li>
+        </ul>
+        <hr>
     </div>
+
+
 
     <script>
       window.onload = function() {

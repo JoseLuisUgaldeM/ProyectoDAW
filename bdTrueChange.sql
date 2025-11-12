@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `fotoperfil` (
   PRIMARY KEY (`id_fotoPerfil`),
   KEY `FK_fotoperfil_usuario` (`id_usuario`),
   CONSTRAINT `FK_fotoperfil_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- La exportación de datos fue deseleccionada.
 
@@ -66,9 +66,12 @@ CREATE TABLE IF NOT EXISTS `producto` (
   `id_producto` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) DEFAULT NULL,
   `categoria` varchar(50) DEFAULT NULL,
-  `fotografia` varchar(50) DEFAULT NULL,
   `descripcion` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id_producto`)
+  `id_fotografias` int(11) DEFAULT NULL,
+  `id_usuario` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id_producto`),
+  KEY `FK_producto_usuario` (`id_usuario`),
+  CONSTRAINT `FK_producto_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- La exportación de datos fue deseleccionada.
@@ -95,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   CONSTRAINT `FK_usuario_producto` FOREIGN KEY (`id_producto`) REFERENCES `producto` (`id_producto`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_usuario_valoracion` FOREIGN KEY (`id_valoracion`) REFERENCES `valoracion` (`valoracion`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `id_direccion` FOREIGN KEY (`id_direccion`) REFERENCES `direccion` (`id_direccion`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- La exportación de datos fue deseleccionada.
 
